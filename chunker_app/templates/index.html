@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Chunker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function copyToClipboard(textAreaId) {
+            var textArea = document.getElementById(textAreaId);
+            textArea.select();
+            document.execCommand("copy");
+            alert("Text copied to clipboard!");  // Optional feedback to the user
+        }
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <h1 class="text-center my-4">Text Chunker</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="input_text">Enter your text:</label>
+                <textarea class="form-control" id="input_text" name="input_text" rows="5" placeholder="Enter your text here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Chunk Text</button>
+        </form>
+        <hr>
+        <div>
+            {% if chunks %}
+                <h2>Chunks:</h2>
+                <div class="list-group">
+                    {% for chunk in chunks %}
+                        <div class="list-group-item my-3">
+                            <h5>Chunk {{ loop.index }}</h5>
+                            <textarea class="form-control" id="chunk-text-{{ loop.index }}" rows="5" readonly>{{ chunk }}</textarea>
+                            <button class="btn btn-secondary mt-2" onclick="copyToClipboard('chunk-text-{{ loop.index }}')">Copy</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

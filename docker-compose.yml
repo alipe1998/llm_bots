@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  discord_bot:
+    build:
+      context: .  # Build the Dockerfile in the current directory
+    env_file:
+      - .env  # Load environment variables from the .env file
+    restart: unless-stopped  # Automatically restart the container if it stops
+
