@@ -9,7 +9,7 @@ __pycache__
 .gitignore
 
 # ignore environment variables
-#.env
+.env
 
 # ignore all files related to the chunker app, jupyter notebooks, and archives
 chunker_app/
